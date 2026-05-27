@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salud Mental - Tu Centro de Salud</title>
+
+    <!-- Usando CDNs para asegurar que Bootstrap cargue correctamente -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #d1f4ed;
+            overflow-x: hidden;
+        }
+
+        .animacion-flotante {
+            animation: flotar 6s ease-in-out infinite;
+        }
+        .animacion-flotante-retraso {
+            animation: flotar 6s ease-in-out infinite;
+            animation-delay: 3s;
+        }
+
+        @keyframes flotar {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .texto-gradiente {
+            background: linear-gradient(to right, #6366f1, #2dd4bf);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .navbar-cristal {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .bg-indigo-suave { background-color: #e0e7ff; color: #4f46e5; }
+        .bg-teal-suave { background-color: #ccfbf1; color: #0d9488; }
+        .bg-purple-suave { background-color: #f3e8ff; color: #9333ea; }
+        
+        .btn-indigo { background-color: #4f46e5; color: white; border: none; transition: all 0.3s ease; }
+        .btn-indigo:hover { background-color: #4338ca; color: white; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
+
+        .contenedor-respiracion {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            position: relative;
+        }
+
+        .circulo-respiracion {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(167,139,250,0.8) 0%, rgba(139,92,246,0.4) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+            transition: transform 4s ease-in-out, background 2s ease-in-out;
+            transform-origin: center center;
+        }
+
+        .circulo-respiracion.inhala {
+            transform: scale(1.6);
+            background: radial-gradient(circle, rgba(94,234,212,0.8) 0%, rgba(20,184,166,0.4) 100%);
+            box-shadow: 0 0 60px rgba(20, 184, 166, 0.4);
+            transition: transform 4s ease-in-out; 
+        }
+
+        .circulo-respiracion.sosten {
+            transform: scale(1.6);
+            background: radial-gradient(circle, rgba(253,186,116,0.8) 0%, rgba(249,115,22,0.4) 100%);
+            box-shadow: 0 0 60px rgba(249, 115, 22, 0.4);
+            transition: background 2s ease-in-out; 
+        }
+
+        .circulo-respiracion.exhala {
+            transform: scale(1);
+            background: radial-gradient(circle, rgba(167,139,250,0.8) 0%, rgba(139,92,246,0.4) 100%);
+            transition: transform 8s ease-in-out; 
+        }
+
+        .tarjeta-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .tarjeta-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body> 
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-cristal border-bottom" id="navbarMenu">
+        <div class="container py-1">
+            <div class="d-flex w-100 justify-content-between align-items-center">
+                
+                <div class="d-flex align-items-center gap-2">
+                    <div class="bg-indigo-suave p-2 rounded-3 d-flex align-items-center justify-content-center">
+                        <i class="bi bi-lungs-fill"></i>
+                    </div>
+                    <span class="fw-bold fs-5 text-dark tracking-tight mb-0">Salud Mental</span>
+                </div>
+
+                <div class="d-none d-lg-flex align-items-center gap-4">
+                    <a class="nav-link fw-medium text-secondary" href="gym.html">GYM</a>
+                    <a class="nav-link fw-bold text-primary" href="#">Salud Mental</a>
+                    <a class="nav-link fw-medium text-secondary" href="higiene-personal.html">Higiene Personal</a>
+                    <a class="nav-link fw-medium text-secondary" href="buen-beber.html">El Buen Beber</a>
+                    <a class="nav-link fw-medium text-secondary" href="prevencion.html">Prevención</a>
+                </div>
+
+                <div class="d-flex align-items-center gap-3">
+                    
+                    <div class="dropdown d-lg-none">
+                        <button class="btn btn-outline-secondary btn-sm dropdown-toggle fw-medium px-3 py-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-list fs-5"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0" style="min-width: 200px;">
+                            <li><span class="dropdown-header fw-bold">Secciones</span></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item py-2" href="gym.html"><i class="bi bi-bicycle me-2 text-success"></i> GYM</a></li>
+                            <li><a class="dropdown-item py-2 active bg-indigo-suave" href="#"><i class="bi bi-emoji-smile me-2 text-primary"></i> Salud Mental</a></li>
+                            <li><a class="dropdown-item py-2" href="higiene-personal.html"><i class="bi bi-droplet me-2 text-info"></i> Higiene Personal</a></li>
+                            <li><a class="dropdown-item py-2" href="buen-beber.html"><i class="bi bi-cup-straw me-2 text-primary"></i> El Buen Beber</a></li>
+                            <li><a class="dropdown-item py-2" href="prevencion.html"><i class="bi bi-shield-check me-2 text-warning"></i> Prevención</a></li>
+                        </ul>
+                    </div>
+
+                    <a href="index.html" class="btn btn-light border shadow-sm rounded-pill fw-medium d-flex align-items-center gap-2 px-3">
+                        <i class="bi bi-arrow-left"></i> <span class="d-none d-sm-inline">Volver</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SOLUCIÓN AQUÍ: Se añadió un "container", y márgenes (pt-5 mt-5) para que el menú no tape el título -->
+    <section class="container pt-5 mt-5 pb-5">
+        <div class="row align-items-center g-5 pt-4">
+            <div class="col-lg-6 text-center text-lg-start">
+                <span class="badge bg-indigo-suave rounded-pill px-3 py-2 mb-4 fs-6 fw-medium border">
+                    <i class="bi bi-circle-fill text-primary" style="font-size: 0.5rem; vertical-align: middle; margin-right: 5px;"></i>
+                    Tu Refugio Personal
+                </span>
+                <h1 class="display-4 fw-bolder text-dark mb-4" style="line-height: 1.2;">
+                    Nutre tu mente, <br>
+                    <span class="texto-gradiente">equilibra tu vida.</span>
+                </h1>
+                <p class="lead text-secondary mb-5">
+                    Así como cuidamos lo que comemos y cómo ejercitamos nuestro cuerpo, nuestra mente necesita atención, descanso y hábitos saludables para florecer.
+                </p>
+                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
+                    <a href="#ejercicio-respiracion" class="btn btn-indigo rounded-pill px-5 py-3 fw-bold fs-6">
+                        <i class="bi bi-wind me-2"></i> Ejercicio de Relax
+                    </a>
+                    <a href="#pilares" class="btn btn-outline-secondary bg-white rounded-pill px-5 py-3 fw-bold fs-6 shadow-sm">
+                        Conocer más
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-6 d-none d-lg-block position-relative">
+                <div class="animacion-flotante row g-3">
+                    <div class="col-6">
+                        <img src="imagenes/imagen1.png" alt="Naturaleza calma" class="img-fluid rounded-4 shadow-lg border border-4 border-white" style="transform: rotate(2deg);">
+                    </div>
+                    <div class="col-6 pt-5 animacion-flotante-retraso">
+                        <img src="imagenes/imagen2.png" alt="Meditación y paz" class="img-fluid rounded-4 shadow-lg border border-4 border-white" style="transform: rotate(-3deg);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ejercicio-respiracion" class="py-5">
+        <div class="container">
+            <div class="card bg-white bg-opacity-75 border-0 shadow-lg rounded-4 p-4 p-md-5 text-center position-relative overflow-hidden" style="backdrop-filter: blur(10px);">
+                
+                <h2 class="h1 fw-bold text-dark mb-3">Tómate un respiro</h2>
+                <p class="text-secondary mb-5 mx-auto" style="max-width: 600px;">La técnica 4-7-8 ayuda a reducir la ansiedad y conciliar el sueño. Haz clic en Iniciar y sigue las instrucciones del círculo.</p>
+
+                <div class="contenedor-respiracion mb-5">
+                    <div id="circulo-animado" class="circulo-respiracion text-white fw-bold fs-4 shadow-lg">
+                        <span id="texto-estado">Listo</span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center gap-3">
+                    <button id="btn-iniciar" class="btn btn-indigo rounded-pill px-5 py-3 fw-bold">
+                        <i class="bi bi-play-fill"></i> Iniciar Ejercicio
+                    </button>
+                    <button id="btn-detener" class="btn btn-danger rounded-pill px-5 py-3 fw-bold d-none">
+                        <i class="bi bi-stop-fill"></i> Detener
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pilares" class="py-5 mt-4">
+        <div class="container">
+            <div class="text-center mb-5 mx-auto" style="max-width: 700px;">
+                <h2 class="display-6 fw-bold text-dark mb-3">Los Pilares del Bienestar</h2>
+                <p class="lead text-secondary">Al igual que los grupos de alimentos en el plato del buen comer, la salud mental requiere un balance de diferentes hábitos.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 p-4 tarjeta-hover">
+                        <div class="bg-indigo-suave rounded-4 d-inline-flex align-items-center justify-content-center mb-4" style="width: 60px; height: 60px;">
+                            <i class="bi bi-moon-stars-fill fs-3"></i>
+                        </div>
+                        <h3 class="h5 fw-bold text-dark mb-3">Descanso de Calidad</h3>
+                        <p class="text-secondary mb-0">Dormir entre 7 y 8 horas es crucial. Durante el sueño, el cerebro procesa emociones y repara tejidos. Crea una rutina nocturna libre de pantallas.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 p-4 tarjeta-hover">
+                        <div class="bg-teal-suave rounded-4 d-inline-flex align-items-center justify-content-center mb-4" style="width: 60px; height: 60px;">
+                            <i class="bi bi-people-fill fs-3"></i>
+                        </div>
+                        <h3 class="h5 fw-bold text-dark mb-3">Conexión Social</h3>
+                        <p class="text-secondary mb-0">Somos seres sociales. Hablar con amigos, familiares o compartir un hobby reduce el estrés y genera un sentido de pertenencia vital para la mente.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 p-4 tarjeta-hover">
+                        <div class="bg-purple-suave rounded-4 d-inline-flex align-items-center justify-content-center mb-4" style="width: 60px; height: 60px;">
+                            <i class="bi bi-yin-yang fs-3"></i>
+                        </div>
+                        <h3 class="h5 fw-bold text-dark mb-3">Gestión del Estrés</h3>
+                        <p class="text-secondary mb-0">Identifica qué te genera ansiedad. Prácticas como leer, escuchar música, meditar o hacer ejercicio (como viste en la sección Gym) liberan tensión.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 mb-5">
+        <div class="container">
+            <div class="bg-dark text-white rounded-5 p-4 p-md-5 shadow-lg position-relative overflow-hidden">
+                
+                <h2 class="h2 fw-bold mb-5 text-center position-relative z-1">Pequeños Hábitos, Grandes Cambios</h2>
+                
+                <div class="accordion accordion-flush bg-transparent position-relative z-1 mx-auto" id="acordeonHabitos" style="max-width: 800px;">
+                    
+                    <div class="accordion-item bg-dark border-secondary border-bottom">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-dark text-white fw-bold fs-5 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#habito1">
+                                <i class="bi bi-phone-vibrate me-3 text-info"></i> Desconecta para conectar
+                            </button>
+                        </h2>
+                        <div id="habito1" class="accordion-collapse collapse" data-bs-parent="#acordeonHabitos">
+                            <div class="accordion-body text-light opacity-75">
+                                Intenta establecer un "toque de queda" para tus dispositivos electrónicos al menos una hora antes de dormir. La luz azul de las pantallas engaña a tu cerebro haciéndole creer que es de día, alterando tu ciclo de sueño.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item bg-dark border-secondary border-bottom">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-dark text-white fw-bold fs-5 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#habito2">
+                                <i class="bi bi-hand-thumbs-down me-3 text-warning"></i> La importancia de decir "No"
+                            </button>
+                        </h2>
+                        <div id="habito2" class="accordion-collapse collapse" data-bs-parent="#acordeonHabitos">
+                            <div class="accordion-body text-light opacity-75">
+                                Conocer y respetar tus propios límites es fundamental. No tienes que asistir a cada evento o aceptar cada favor si te sientes agotado. Proteger tu energía es un acto de amor propio, no de egoísmo.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item bg-dark border-secondary border-bottom">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-dark text-white fw-bold fs-5 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#habito3">
+                                <i class="bi bi-bicycle me-3 text-success"></i> Mueve tu cuerpo, relaja tu mente
+                            </button>
+                        </h2>
+                        <div id="habito3" class="accordion-collapse collapse" data-bs-parent="#acordeonHabitos">
+                            <div class="accordion-body text-light opacity-75">
+                                Como vimos en la sección de Gimnasio, el ejercicio libera endorfinas (las hormonas de la felicidad). No necesitas cargar mucho peso; una simple caminata de 30 minutos al aire libre puede cambiar completamente tu estado de ánimo.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white py-5 border-t text-center">
+        <div class="container">
+            <div class="d-flex justify-content-center gap-4 mb-4">
+                <a href="#" class="text-secondary fs-4"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-secondary fs-4"><i class="bi bi-tiktok"></i></a>
+                <a href="#" class="text-secondary fs-4"><i class="bi bi-youtube"></i></a>
+            </div>
+            <p class="text-secondary fw-medium small mb-0">© 2026 Proyecto Escolar - Vida Saludable.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts de Bootstrap y lógica de respiración -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Lógica para el ejercicio de respiración 4-7-8
+        let intervaloAnimacion;
+        let estaAnimando = false;
+
+        const circulo = document.getElementById('circulo-animado');
+        const texto = document.getElementById('texto-estado');
+        const btnIniciar = document.getElementById('btn-iniciar');
+        const btnDetener = document.getElementById('btn-detener');
+
+        function cicloRespiracion() {
+            // Fase 1: Inhalar (4s)
+            texto.innerText = 'Inhala...';
+            circulo.className = 'circulo-respiracion inhala';
+            
+            setTimeout(() => {
+                // Fase 2: Sostener (7s)
+                texto.innerText = 'Sostén...';
+                circulo.className = 'circulo-respiracion sosten';
+                
+                setTimeout(() => {
+                    // Fase 3: Exhalar (8s)
+                    texto.innerText = 'Exhala...';
+                    circulo.className = 'circulo-respiracion exhala';
+                }, 7000); 
+            }, 4000); 
+        }
+
+        btnIniciar.addEventListener('click', () => {
+            if(estaAnimando) return;
+            estaAnimando = true;
+            btnIniciar.classList.add('d-none');
+            btnDetener.classList.remove('d-none');
+            
+            cicloRespiracion();
+            intervaloAnimacion = setInterval(cicloRespiracion, 19000); // 4+7+8 = 19 segundos por ciclo
+        });
+
+        btnDetener.addEventListener('click', () => {
+            estaAnimando = false;
+            clearInterval(intervaloAnimacion);
+            btnDetener.classList.add('d-none');
+            btnIniciar.classList.remove('d-none');
+            texto.innerText = 'Listo';
+            circulo.className = 'circulo-respiracion';
+        });
+    </script>
+</body>
+</html>
